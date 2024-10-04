@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Selector and Font Control</title>
+</head>
+<body>
+
+    <!-- Paragraph -->
+    <p id="my_test_id" style="font-size: 16px; margin: 20px 0;">Exercises1</p>
+
+    <!-- Buttons for font size change -->
+    <button onclick="increaseFontSize()" 
+            style="margin: 5px; padding: 10px; background-color: #e7e3e9; color: rgb(14, 8, 40); border: none; cursor: pointer;">
+        Increase Font Size
+    </button>
+    
+    <button onclick="decreaseFontSize()" 
+            style="margin: 5px; padding: 10px; background-color: #f1ecec; color: rgb(26, 8, 16); border: none; cursor: pointer;">
+        Decrease Font Size
+    </button>
+
+    <button onclick="showMessage()" 
+            style="margin: 5px; padding: 10px; background-color: #f8f0f01a; color: rgb(27, 8, 12); border: none; cursor: pointer;">
+        showMessage
+    </button>
+
+    <p id="message-area"></p>
+
+    <select id="student-select" onchange="showStudentImage()" style="margin: 20px 0;">
+        <option value="">Select a student</option>
+        <option value="My.jpg">Student 1</option>
+        <option value="oli.jpeg">Student 2</option>
+        <option value="student3.jpg">Student 3</option>
+    </select>
+
+    <img id="student-image" src="" alt="Student Image" style="display:none; margin-top: 20px; width: 200px; height: auto;" />
+
+    <script>
+      
+        function increaseFontSize() {
+            var element = document.getElementById("my_test_id");
+            var currentFontSize = window.getComputedStyle(element, null).getPropertyValue('font-size');
+            var newFontSize = parseFloat(currentFontSize) + 2;
+            element.style.fontSize = newFontSize + 'px';
+        }
+
+        function decreaseFontSize() {
+            var element = document.getElementById("my_test_id");
+            var currentFontSize = window.getComputedStyle(element, null).getPropertyValue('font-size');
+            var newFontSize = parseFloat(currentFontSize) - 2;
+            element.style.fontSize = newFontSize + 'px';
+        }
+
+        function showMessage() {
+            document.getElementById("message-area").innerHTML = "THIS IS THE TIME TO SHOW UP";
+        }
+
+
+        function showStudentImage() {
+            var selectedImage = document.getElementById("student-select").value;
+            var studentImage = document.getElementById("student-image");
+
+            if (selectedImage) {
+                studentImage.src = "images/" + selectedImage;
+                studentImage.style.display = 'block';
+            } else {
+                studentImage.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>
